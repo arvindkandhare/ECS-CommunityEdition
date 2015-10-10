@@ -39,6 +39,8 @@ echo "Installing dbus tools"
 apt-get install dbus -y
 apt-get install python-dbus -y
 apt-get install python-gobject -y
+apt-get install docker.io -y
+service docker start
 
 
 #ip=$(/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')

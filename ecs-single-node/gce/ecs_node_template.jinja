@@ -30,15 +30,16 @@ resources:
           echo "Install Packages..."
           apt-get update -y
           apt-get install git -y
+          apt-get install docker.io -y
           echo "Installed!"
           echo "Cloning git repo"
           git clone https://github.com/arvindkandhare/ECS-CommunityEdition.git
-          echo "Change directory"
           ip=$(/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
+          echo "Change directory"
           cd /ECS-CommunityEdition/ecs-single-node/
           echo "Starting ECS Install Script"
-          chmod a+x ./ecs-single-node/gce/gce_hostprep.sh
-          ./ecs-single-node/gce/gce_hostprep.sh $ip
+          chmod a+x ./gce/gce_hostprep.sh
+          ./gce/gce_hostprep.sh $ip
           python step1_ecs_singlenode_install.py --disks sdb --ethadapter eth0 --hostname ecs1
           echo "Upload License"
           python step2_object_provisioning.py --ECSNodes=ecs1 --Namespace=ns1 --ObjectVArray=sp1 --ObjectVPool=rg1 --UserName=user1 --DataStoreName=ds1 --VDCName=vdc1 --MethodName=UploadLicense
@@ -50,7 +51,7 @@ resources:
       autoDelete: true
       initializeParams:
         diskName: disk-{{ env["name"] }}
-        sourceImage: https://www.googleapis.com/compute/beta/projects/debian-cloud/global/images/backports-debian-7-wheezy-v20150929
+        sourceImage: https://www.googleapis.com/compute/v1/projects/ubuntu-os-cloud/global/images/ubuntu-1504-vivid-v20150911
     - deviceName: {{ DATADISK }}
       type: PERSISTENT
       source: $(ref.{{ DATADISK }}.selfLink)
