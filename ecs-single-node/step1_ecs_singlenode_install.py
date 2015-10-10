@@ -672,10 +672,10 @@ def main():
         0x8915, struct.pack('256s', ethernet_adapter_name[:15]))[20:24])
 
 
-    yum_func()
-    package_install_func()
-    update_selinux_os_configuration()
-    docker_install_func()
+   # yum_func()
+   # package_install_func()
+   # update_selinux_os_configuration()
+   # docker_install_func()
     prep_file_func()
     docker_pull_func(docker_image_name)
     hosts_file_func(args.hostname, ethernet_adapter_name)
