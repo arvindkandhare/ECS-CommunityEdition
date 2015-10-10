@@ -189,10 +189,10 @@ def hosts_file_func(hostname, ethadapter):
         hostname_exists = cmdline("cat /etc/hostname | grep %s" % hostname)
         if not hostname_exists:
             print "(Adding) Hostname does not Exist: %s" % hostname
-            os.remove("/etc/hostname")
-            hostname_file=open("/etc/hostname", "wb")
-            hostname_file.write(str(hostname))
-            hostname_file.close()
+            #os.remove("/etc/hostname")
+            #hostname_file=open("/etc/hostname", "wb")
+            #hostname_file.write(str(hostname))
+            #hostname_file.close()
         else:
             print "(Ignoring) Hostname Exists: %s" % hostname_exists
 

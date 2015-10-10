@@ -46,10 +46,10 @@ service docker start
 #ip=$(/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
 
 
-#cp /tmp/com.emc.vipr.fabric.hal.conf /etc/dbus-1/system.d
+cp com.emc.vipr.fabric.hal.conf /etc/dbus-1/system.d
 
-#echo "Starting the dbus server"
-#nohup python /tmp/dbus_service.py < /dev/null >/dev/null 2>&1 &
+echo "Starting the dbus server"
+nohup python dbus_service.py < /dev/null >/dev/null 2>&1 &
 
 echo "Install nsenter"
 apt-get install nsenter -y
