@@ -2,7 +2,7 @@
 
 MOUNT=/bin/mount
 UMOUNT=/bin/umount
-GREP=/usr/bin/grep
+GREP=grep
 AWK=/usr/bin/awk
 DF=/bin/df
 FALLOCATE=/usr/bin/fallocate
