@@ -37,6 +37,7 @@ resources:
           ip=$(/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
           cd /ECS-CommunityEdition/ecs-single-node/
           echo "Starting ECS Install Script"
+          chmod a+x ./ecs-single-node/gce/gce_hostprep.sh
           ./ecs-single-node/gce/gce_hostprep.sh $ip
           python step1_ecs_singlenode_install.py --disks sdb --ethadapter eth0 --hostname ecs1
           echo "Upload License"
