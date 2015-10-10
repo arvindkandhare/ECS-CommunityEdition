@@ -88,12 +88,12 @@ def docker_install_func():
         logger.info("Removing Docker Packages.")
         subprocess.call([docker_yum, docker_yum_arg, docker_name, docker_package_auto])
 
-        docker_package = "docker-1.4.1-2.el7.x86_64.rpm"
+        docker_package = "docker-1.8.1-5.git32b8b25.el7.x86_64.rpm"
 
         # Downloads Docker package if not already existent
         if not docker_package in cmdline("ls"):
             docker_wget = "wget"
-            docker_url = "http://cbs.centos.org/kojifiles/packages/docker/1.4.1/2.el7/x86_64/{}".format(docker_package)
+            docker_url = "http://cbs.centos.org/kojifiles/packages/docker/1.8.1/5.git32b8b25.el7/x86_64/{}".format(docker_package)
 
             # Gets the docker package
             logger.info("Downloading the Docker Package.")
