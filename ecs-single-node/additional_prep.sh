@@ -72,3 +72,4 @@ fi
 
 # mount again, the file system is now ready
 $MOUNT $device $mount_point -o noatime
+exit
