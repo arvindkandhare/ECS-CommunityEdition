@@ -683,6 +683,7 @@ def main():
     seeds_file_func(ethernet_adapter_name)
     prepare_data_disk_func(args.disks)
     run_additional_prep_file_func(args.disks)
+    logger.info("Done running additional prep file function")
     directory_files_conf_func()
     set_docker_configuration_func()
     execute_docker_func(docker_image_name)
