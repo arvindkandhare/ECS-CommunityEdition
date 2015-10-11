@@ -677,7 +677,8 @@ def main():
     #s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     #ip_address = socket.inet_ntoa(fcntl.ioctl(s.fileno(),
     #    0x8915, struct.pack('256s', ethernet_adapter_name[:15]))[20:24])
- 
+
+    global ip_address; 
     ip_address = get_first(args.ipaddress)
 
 
