@@ -12,7 +12,7 @@ XFS_REPAIR=/sbin/xfs_repair
 DD=/bin/dd
 
 # size of chunk file
-FILE_SIZE_GB=10
+FILE_SIZE_GB=1
 
 function usage {
     echo "usage: $0 <mounted_device>"
@@ -72,4 +72,3 @@ fi
 
 # mount again, the file system is now ready
 $MOUNT $device $mount_point -o noatime
-exit
