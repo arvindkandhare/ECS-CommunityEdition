@@ -34,16 +34,17 @@ resources:
           echo "Installed!"
           echo "Cloning git repo"
           git clone https://github.com/arvindkandhare/ECS-CommunityEdition.git
-          ip=$(/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')
+          ip=$(curl "http://metadata.google.internal/computeMetadata/v1/instance/network-interfaces/0/access-configs/0/external-ip" -H "Metadata-Flavor: Google")
           echo "Change directory"
           cd /ECS-CommunityEdition/ecs-single-node/
           echo "Starting ECS Install Script"
           chmod a+x ./gce/gce_hostprep.sh
           ./gce/gce_hostprep.sh $ip
-          python step1_ecs_singlenode_install.py --disks sdb --ethadapter eth0 --hostname ecs1
+          python step1_ecs_singlenode_install.py --disks sdb --ethadapter eth0 --hostname ecs1 --ipaddress $ip
           piid=`ps -ef |grep storageser | grep -v monitor | grep -v grep| awk "{ print \\$2; } "`
           kill -9 $piid
           echo "Upload License"
+       
           python step2_object_provisioning.py --ECSNodes=ecs1 --Namespace=ns1 --ObjectVArray=sp1 --ObjectVPool=rg1 --UserName=user1 --DataStoreName=ds1 --VDCName=vdc1 --MethodName=UploadLicense
           echo "Done! Login and continue provisioning process"
     disks:

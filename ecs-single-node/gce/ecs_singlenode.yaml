@@ -7,7 +7,7 @@ resources:
   properties:
     allowed:
       - IPProtocol: TCP
-        ports: [ 22,443,80,9024,9020,9011,4443 ]
+#        ports: [ 22,443,80,9024,9020,9011,4443 ]
     sourceRanges: [ 0.0.0.0/0 ]
 
 - name: ecs1
