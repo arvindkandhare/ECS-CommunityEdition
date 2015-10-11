@@ -21,7 +21,6 @@ import struct
 # Logging Initialization
 logging.config.dictConfig(settings.ECS_SINGLENODE_LOGGING)
 logger = logging.getLogger("root")
-ip_address = 0
 
 def yum_func():
     """
@@ -199,10 +198,9 @@ def hosts_file_func(hostname, ethadapter):
         logger.info("Updating the /etc/hosts file with the Parameter Hostname")
 
         # Get the IP address on Linux
-        #s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        #ip_address = socket.inet_ntoa(fcntl.ioctl(s.fileno(),
-        #    0x8915, struct.pack('256s', ethadapter[:15]))[20:24])
-        global ip_address;
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        ip_address = socket.inet_ntoa(fcntl.ioctl(s.fileno(),
+            0x8915, struct.pack('256s', ethadapter[:15]))[20:24])
 
         # Open a file hosts
         hosts_file = open("/etc/hosts", "a")
@@ -229,11 +227,10 @@ def network_file_func(ethadapter):
     try:
 
         # Get the IP address on Linux
-        #s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        #ip_address = socket.inet_ntoa(fcntl.ioctl(s.fileno(),
-        #        0x8915, struct.pack('256s', ethadapter[:15]))[20:24])
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        ip_address = socket.inet_ntoa(fcntl.ioctl(s.fileno(),
+                0x8915, struct.pack('256s', ethadapter[:15]))[20:24])
 
-        global ip_address;
 
         # Get the hostname
         hostname = subprocess.check_output(['hostname']).rstrip('\r\n')
@@ -268,11 +265,10 @@ def seeds_file_func(ethadapter):
 
     try:
         # Get the IP address on Linux
-        #s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        #ip_address = socket.inet_ntoa(fcntl.ioctl(s.fileno(),
-        #        0x8915, struct.pack('256s', ethadapter[:15]))[20:24])
+        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        ip_address = socket.inet_ntoa(fcntl.ioctl(s.fileno(),
+                0x8915, struct.pack('256s', ethadapter[:15]))[20:24])
 
-        global ip_address;
 
         logger.info("Creating the seeds file with IP address: {} ".format(ip_address))
         # Open a file
@@ -674,12 +670,10 @@ def main():
     docker_image_name = "arvindkandhare/ecs-reduced-footprint:2.1"
     ethernet_adapter_name = get_first(args.ethadapter)
     # Get the IP address on Linux
-    #s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    #ip_address = socket.inet_ntoa(fcntl.ioctl(s.fileno(),
-    #    0x8915, struct.pack('256s', ethernet_adapter_name[:15]))[20:24])
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    ip_address = socket.inet_ntoa(fcntl.ioctl(s.fileno(),
+        0x8915, struct.pack('256s', ethernet_adapter_name[:15]))[20:24])
 
-    global ip_address; 
-    ip_address = get_first(args.ipaddress)
 
 
    # yum_func()
