@@ -685,7 +685,7 @@ def main():
     logger.info("Done running additional prep file function")
     docker_pull_func(docker_image_name)
     directory_files_conf_func()
-    set_docker_configuration_func()
+    #set_docker_configuration_func()
     execute_docker_func(docker_image_name)
     modify_container_conf_func()
     getAuthToken(ip_address,"root","ChangeMe")
