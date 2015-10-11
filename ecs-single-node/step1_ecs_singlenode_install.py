@@ -21,7 +21,7 @@ import struct
 # Logging Initialization
 logging.config.dictConfig(settings.ECS_SINGLENODE_LOGGING)
 logger = logging.getLogger("root")
-
+ip_address = 0
 
 def yum_func():
     """
