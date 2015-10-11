@@ -12,7 +12,7 @@ XFS_REPAIR=/sbin/xfs_repair
 DD=/bin/dd
 
 # size of chunk file
-FILE_SIZE_GB=1
+FILE_SIZE_GB=10
 
 function usage {
     echo "usage: $0 <mounted_device>"
