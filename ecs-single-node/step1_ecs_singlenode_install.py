@@ -335,7 +335,7 @@ def run_additional_prep_file_func(disks):
         prep_file_name = "./additional_prep.sh"
 
         for disk in disks:
-            device_name = "/dev/{}".format(disk)
+            device_name = "/dev/{}1".format(disk)
             # Gets the prep. file
             logger.info("Executing the additional preparation script in '{}'".format(device_name))
             subprocess.call([prep_file_name, device_name])
