@@ -16,7 +16,7 @@ resources:
   name: {{ env["name"] }}
   properties:
     zone: {{ properties["zone"] }}
-    machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/n1-highmem-2
+    machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/n1-highmem-4
     scheduling:
       preemptible: true
     metadata:
