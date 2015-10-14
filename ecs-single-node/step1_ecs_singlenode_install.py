@@ -211,6 +211,7 @@ def hosts_file_func(hostname, ethadapter):
             hosts_file.write("%s    %s\n" % (ip_address, hostname))
         else:
             print "(Ignoring) Hostname Exists: %s" % hostname_exists
+        hosts_file.write("%s    %s\n" % (ip_address, "registryproxy"))
         # Close file
         hosts_file.close()
 
