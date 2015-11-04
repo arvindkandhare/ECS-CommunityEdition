@@ -15,8 +15,9 @@ resources:
   properties:
     zone: us-central1-b
 
-#- name: ecs2
-#  type: ecs_node_template.jinja
-#  properties:
+- name: ecs2
+  type: ecs_node_template.jinja
+  properties:
+    zone: us-east1-b
 #    zone: us-central1-c
 
