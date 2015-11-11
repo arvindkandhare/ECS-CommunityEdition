@@ -16,7 +16,7 @@ resources:
   name: {{ env["name"] }}
   properties:
     zone: {{ properties["zone"] }}
-    machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/n1-highmem-4
+    machineType: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/machineTypes/n1-highmem-8
     scheduling:
       preemptible: false
     metadata:
@@ -54,7 +54,7 @@ resources:
       autoDelete: true
       initializeParams:
         diskName: disk-{{ env["name"] }}
-        sourceImage: https://www.googleapis.com/compute/v1/projects/google-containers/global/images/container-vm-v20150806
+        sourceImage: https://www.googleapis.com/compute/v1/projects/google-containers/global/images/container-vm-v20151103
     - deviceName: {{ DATADISK }}
       type: PERSISTENT
       source: $(ref.{{ DATADISK }}.selfLink)
