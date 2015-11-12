@@ -8,7 +8,7 @@ resources:
   name: {{ DATADISK }}
   properties:
     zone: {{ properties["zone"] }}
-    sizeGb: 512
+    sizeGb: 1024
     # Disk type is a full URI.  Example uses pd-standard, but pd-ssd can be used as well
     type: https://www.googleapis.com/compute/v1/projects/{{ env["project"] }}/zones/{{ properties["zone"] }}/diskTypes/pd-standard
 
@@ -54,6 +54,7 @@ resources:
       autoDelete: true
       initializeParams:
         diskName: disk-{{ env["name"] }}
+        diskSizeGb: 100
         sourceImage: https://www.googleapis.com/compute/v1/projects/google-containers/global/images/container-vm-v20151103
     - deviceName: {{ DATADISK }}
       type: PERSISTENT
