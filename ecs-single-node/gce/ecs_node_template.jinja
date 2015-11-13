@@ -40,7 +40,7 @@ resources:
           echo "Starting ECS Install Script"
           chmod a+x ./gce/gce_hostprep.sh
           ./gce/gce_hostprep.sh $ip
-          python step1_ecs_singlenode_install.py --disks sdb --ethadapter eth0 --hostname {{ env["name"] }} --ipaddress $ip
+          python step1_ecs_singlenode_install.py --disks sdb --ethadapter eth0 --hostname {{ env["name"] }} --ipaddress $ip --image emccorp/ecs-reduced-footprint
           piid=`ps -ef |grep storageser | grep -v monitor | grep -v grep| awk "{ print \\$2; } "`
           kill -9 $piid
           echo "Upload License"

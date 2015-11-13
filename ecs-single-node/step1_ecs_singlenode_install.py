@@ -624,6 +624,8 @@ def main():
                         required=True)
     parser.add_argument('--ipaddress', nargs='+', help='External ip address of thenode',
                         required=True)
+    parser.add_argument('--image', nargs='+', help='THe image to load',
+                        required=True)
     parser.add_argument('--onlyContainerConfig', dest='container_config', action='store_true',
                         help='If present, it will only run the container configuration. Example: True/False',
                         required=False)
@@ -668,7 +670,8 @@ def main():
     # Step 1 : Configuration of Host Machine to run the ECS Docker Container
     logger.info("Starting Step 1: Configuration of Host Machine to run the ECS Docker Container.")
 
-    docker_image_name = "emccorp/ecs-software-2.1"
+    #docker_image_name = "emccorp/ecs-software-2.1"
+    docker_image_name = args.image
     ethernet_adapter_name = get_first(args.ethadapter)
     # Get the IP address on Linux
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
